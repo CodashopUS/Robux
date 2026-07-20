@@ -1,0 +1,1127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roblox Gamer - Practice Layout</title>
+    <style>
+        :root {
+            --bg-dark: #120826;
+            --bg-card: #1c0e38;
+            --accent-red: #ef4444;
+            --text-light: #ffffff;
+            --text-muted: #cbd5e1;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.5;
+            position: relative;
+            min-height: 100vh;
+        }
+
+        /* Background Video Styling */
+        .video-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            z-index: -2;
+            pointer-events: none;
+        }
+
+        .background-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            object-fit: cover;
+        }
+
+        /* Overlay to keep the background dark for readability */
+        .page-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(18, 8, 38, 0.85);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* Navbar */
+        nav {
+            background-color: #0b0416;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            border-bottom: 1px solid #2d1b4e;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .menu-icon {
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .logo-group {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .brand-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: bold;
+            font-size: 16px;
+            letter-spacing: 1px;
+            color: #ffffff;
+        }
+
+        .brand-item img {
+            width: 28px;
+            height: 28px;
+            object-fit: contain;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .search-btn, .signup-btn {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+        }
+
+        .signup-btn {
+            background-color: var(--accent-red);
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+        }
+
+        /* Notice Banner */
+        .notice-banner {
+            background-color: #ccfb5d;
+            color: #111;
+            text-align: center;
+            padding: 12px 20px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            gap: 30px;
+            align-items: start;
+        }
+
+        @media (max-width: 900px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Left Sidebar Card */
+        .sidebar-card {
+            background-color: var(--bg-card);
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid #3b236b;
+        }
+
+        .game-banner {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .game-banner img.main-poster {
+            width: 70px;
+            height: 70px;
+            border-radius: 10px;
+            object-fit: cover;
+        }
+
+        .game-title-group h2 {
+            font-size: 18px;
+            color: white;
+            margin-bottom: 4px;
+        }
+
+        .official-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            background-color: rgba(99, 102, 241, 0.2);
+            color: #818cf8;
+            font-size: 11px;
+            font-weight: bold;
+            padding: 3px 10px;
+            border-radius: 20px;
+        }
+
+        .sidebar-description {
+            font-size: 12px;
+            color: var(--text-muted);
+            line-height: 1.6;
+            text-align: justify;
+        }
+
+        .sidebar-description p {
+            margin-bottom: 12px;
+        }
+
+        .sidebar-description a {
+            color: #818cf8;
+            text-decoration: underline;
+        }
+
+        .sidebar-description strong {
+            color: white;
+        }
+
+        /* Store Badges Style */
+        .store-badges {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 20px;
+            width: 100%;
+        }
+
+        .store-badge-link {
+            display: block;
+            width: 100%;
+            transition: transform 0.2s ease, opacity 0.2s ease;
+        }
+
+        .store-badge-link:hover {
+            transform: scale(1.02);
+            opacity: 0.9;
+        }
+
+        .store-badge-link img {
+            width: 100%;
+            height: auto;
+            max-height: 42px;
+            object-fit: contain;
+            border-radius: 6px;
+            display: block;
+        }
+
+        /* Steps Section */
+        .steps-container {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .step-card {
+            background-color: var(--bg-card);
+            border-radius: 12px;
+            padding: 25px;
+            position: relative;
+            border: 1px solid #3b236b;
+        }
+
+        .step-number {
+            position: absolute;
+            top: -15px;
+            left: 25px;
+            background-color: #3b82f6;
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 14px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+        }
+
+        .step-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            margin-left: 40px;
+        }
+
+        /* Input Group (Step 1) */
+        .input-group {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+        }
+
+        .input-wrapper {
+            position: relative;
+            background: white;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            padding: 0 12px;
+            border: 2px solid transparent;
+            transition: border-color 0.2s;
+        }
+
+        .input-wrapper.error {
+            border-color: #ef4444;
+        }
+
+        .input-wrapper input {
+            width: 100%;
+            border: none;
+            padding: 14px 0;
+            outline: none;
+            font-size: 14px;
+            background: transparent;
+            color: #111;
+            text-align: center;
+        }
+
+        .input-wrapper input::placeholder {
+            color: #94a3b8;
+        }
+
+        .input-help-text {
+            font-size: 11px;
+            color: var(--text-muted);
+            margin-top: 10px;
+        }
+
+        /* Codashop Category Tabs Style */
+        .category-tabs {
+            display: flex;
+            gap: 10px;
+            background: #120826;
+            padding: 6px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #2d1b4e;
+        }
+
+        .tab {
+            flex: 1;
+            text-align: center;
+            padding: 10px;
+            font-size: 13px;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            color: var(--text-muted);
+            background: transparent;
+            transition: all 0.2s ease;
+        }
+
+        .tab.active {
+            background: #2b1452;
+            color: white;
+            border: 1px solid #5b21b6;
+        }
+
+        .section-label {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+            font-weight: bold;
+        }
+
+        /* Top-up Grid Style */
+        .topup-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .topup-item {
+            background-color: #261447;
+            border: 2px solid #3b236b;
+            border-radius: 8px;
+            padding: 15px 10px;
+            text-align: center;
+            cursor: pointer;
+            position: relative;
+            transition: all 0.2s ease;
+        }
+
+        .topup-item:hover, .topup-item.selected {
+            border-color: #6366f1;
+            background-color: #2f1958;
+        }
+
+        /* Locked / Disabled Top-up Items before username input */
+        .topup-grid.locked {
+            opacity: 0.4;
+            pointer-events: none;
+            filter: grayscale(40%);
+        }
+
+        /* Unavailable/Disabled Topup Item Styling */
+        .topup-item.unavailable {
+            background-color: #1a0f2e;
+            border-color: #251642;
+            opacity: 0.4;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+
+        .topup-item.unavailable .price {
+            color: #64748b;
+        }
+
+        .topup-item img.item-icon {
+            width: 32px;
+            height: 32px;
+            object-fit: contain;
+            margin-bottom: 6px;
+            pointer-events: none;
+        }
+
+        .best-seller-badge {
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-color: #ec4899;
+            color: white;
+            font-size: 9px;
+            font-weight: bold;
+            padding: 2px 8px;
+            border-bottom-right-radius: 6px;
+            border-top-left-radius: 6px;
+            text-transform: uppercase;
+        }
+
+        .topup-item h4 {
+            font-size: 13px;
+            margin-top: 4px;
+            margin-bottom: 8px;
+            line-height: 1.3;
+            pointer-events: none;
+        }
+
+        .topup-item h4 span {
+            pointer-events: none;
+        }
+
+        .topup-item .price {
+            font-size: 13px;
+            color: #f472b6;
+            font-weight: bold;
+            pointer-events: none;
+        }
+
+        /* Select Top Up Button Bar */
+        .select-topup-bar {
+            background: linear-gradient(90deg, #4f46e5, #9333ea);
+            color: white;
+            text-align: center;
+            padding: 16px;
+            border-radius: 12px;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(147, 51, 234, 0.4);
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: opacity 0.2s;
+        }
+
+        .select-topup-bar:hover {
+            opacity: 0.9;
+        }
+
+        /* Modal Overlay Styles */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(5, 2, 12, 0.85);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .modal-container {
+            background-color: var(--bg-card);
+            border: 1px solid #3b236b;
+            border-radius: 16px;
+            width: 100%;
+            max-width: 600px;
+            max-height: 85vh;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+            animation: modalFadeIn 0.3s ease;
+        }
+
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .modal-header {
+            padding: 20px;
+            border-bottom: 1px solid #2d1b4e;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-header h3 {
+            font-size: 18px;
+            color: #ffffff;
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .close-modal:hover {
+            color: white;
+        }
+
+        .modal-body {
+            padding: 20px;
+            overflow-y: auto;
+            flex: 1;
+        }
+
+        /* Reminder Box */
+        .reminder-box {
+            background-color: rgba(239, 68, 68, 0.15);
+            border: 1px solid rgba(239, 68, 68, 0.4);
+            color: #fca5a5;
+            padding: 12px 15px;
+            border-radius: 8px;
+            font-size: 13px;
+            margin-bottom: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .reminder-box strong {
+            color: #f87171;
+        }
+
+        /* User Agreement & Terms Content */
+        .terms-content {
+            font-size: 12px;
+            color: var(--text-muted);
+            line-height: 1.6;
+            background: #120826;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #2d1b4e;
+            height: 180px;
+            overflow-y: scroll;
+            margin-bottom: 15px;
+            text-align: justify;
+        }
+
+        .terms-content h4 {
+            color: white;
+            margin-bottom: 8px;
+            font-size: 13px;
+        }
+
+        .terms-content p {
+            margin-bottom: 10px;
+        }
+
+        .checkbox-container {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 20px;
+            font-size: 13px;
+            cursor: pointer;
+            color: white;
+        }
+
+        .checkbox-container input {
+            margin-top: 3px;
+            cursor: pointer;
+        }
+
+        /* Payment Methods Grid */
+        .payment-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 12px;
+        }
+
+        .payment-option {
+            background-color: #261447;
+            border: 2px solid #3b236b;
+            border-radius: 10px;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .payment-option.available:hover {
+            border-color: #6366f1;
+            background-color: #2f1958;
+        }
+
+        .payment-option.unavailable {
+            opacity: 0.4;
+            cursor: not-allowed;
+            border-color: #23123f;
+        }
+
+        .payment-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .payment-info img {
+            width: 36px;
+            height: 36px;
+            object-fit: contain;
+            border-radius: 6px;
+        }
+
+        .payment-name {
+            font-weight: bold;
+            font-size: 14px;
+            color: white;
+        }
+
+        .payment-status {
+            font-size: 11px;
+            font-weight: bold;
+            padding: 4px 10px;
+            border-radius: 20px;
+        }
+
+        .status-available {
+            background-color: rgba(16, 185, 129, 0.2);
+            color: #34d399;
+        }
+
+        .status-unavailable {
+            background-color: rgba(239, 68, 68, 0.2);
+            color: #f87171;
+        }
+
+        /* QR Code & Ads Video Popup Modal Styling */
+        .qr-modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(5, 2, 12, 0.9);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .qr-modal-container {
+            background-color: var(--bg-card);
+            border: 1px solid #3b236b;
+            border-radius: 16px;
+            padding: 25px;
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.7);
+            position: relative;
+            max-width: 720px;
+            width: 100%;
+            animation: modalFadeIn 0.3s ease;
+        }
+
+        .qr-content-area {
+            text-align: center;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .qr-content-area h3 {
+            font-size: 18px;
+            color: white;
+        }
+
+        .qr-image-wrapper img {
+            width: 200px;
+            height: 200px;
+            object-fit: contain;
+            background: white;
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        .ads-sidebar-area {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Using true native dimensions and aspect ratio from video metadata instead of a forced rigid box */
+        .ads-sidebar-area video {
+            width: auto;
+            height: auto;
+            max-width: 220px;
+            max-height: 320px;
+            border-radius: 10px;
+            border: 1px solid #3b236b;
+            display: block;
+        }
+
+        .close-qr-modal {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .close-qr-modal:hover {
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Background Video Element (Automatically plays without click prompts) -->
+    <div class="video-container">
+        <video id="bgVideo" autoplay muted loop playsinline poster="ads.png" class="background-video">
+            <source src="ads.mp4" type="video/mp4">
+            Your browser does not support HTML5 video.
+        </video>
+    </div>
+    <div class="page-overlay"></div>
+
+    <!-- Navbar -->
+    <nav>
+        <div class="logo-section">
+            <div class="menu-icon">☰</div>
+            <div class="logo-group">
+                <div class="brand-item">
+                    <img src="coda.png" alt="Codashop"> CODASHOP
+                </div>
+                <div class="brand-item">
+                    <img src="git.png" alt="GitHub"> GITHUB
+                </div>
+            </div>
+        </div>
+        <div class="nav-right">
+            <button class="search-btn">🔍</button>
+            <button class="signup-btn">Sign up</button>
+        </div>
+    </nav>
+
+    <!-- Notice Banner -->
+    <div class="notice-banner">
+        Special 50% OFF promo: Enjoy massive discounts on all Philippine Peso Robux packages today!
+    </div>
+
+    <!-- Main Container -->
+    <div class="container">
+        
+        <!-- Left Sidebar Card with Complete Description -->
+        <div class="sidebar-card">
+            <div class="game-banner">
+                <img src="r.png" alt="Roblox Featured" class="main-poster">
+                <div class="game-title-group">
+                    <h2>Roblox Top-Up</h2>
+                    <div class="official-badge">✔ Official Distributor</div>
+                </div>
+            </div>
+
+            <div class="sidebar-description">
+                <p><strong>Note :</strong> This code only works for US region account and user should physically reside in the US.</p>
+                <p>Buy Roblox Digital Gift Card and enjoy a hassle-free top-up experience only at Codashop. Simply select your preferred voucher amount or value, choose the payment mode that’s most convenient for you, and receive your voucher code in seconds via your email.</p>
+                <p>Pay conveniently using GCash, PayPal, PayMaya, Union Bank, Crypto (USDC/USDT), and other e-wallets.</p>
+                <p>Learn how to purchase a Roblox Premium Pass, <a href="https://www.roblox.com" target="_blank">click here</a>.</p>
+                <p><strong>Terms and Conditions:</strong><br>
+                This card may only be redeemed at <a href="https://www.roblox.com" target="_blank">www.roblox.com</a> for Roblox credits, which may only be used to obtain certain products and services at <a href="https://www.roblox.com" target="_blank">www.roblox.com</a>. Availability and pricing of products and services is subject to change and age restrictions may apply. To redeem this card and use Roblox credits, you must have Internet access, register for a Roblox account, and accept the Roblox Terms of Use. No partial redemption is permitted. This card is not redeemable for cash or credit, except as and where required by law. Resale is strictly prohibited. Roblox is not responsible if this card is used without your permission or if it is lost, stolen, damaged, or destroyed. A card obtained by fraud will not be honored. For minimum system requirements and more information, including how to determine the balance of your gift card, please visit <a href="https://www.roblox.com" target="_blank">www.roblox.com</a> or contact us at <a href="https://www.roblox.com" target="_blank">www.roblox.com/support</a>.</p>
+                <p>© 2020 Roblox Corporation. All rights Reserved. All trademarks shown are property of Roblox Corporation.</p>
+            </div>
+
+            <div class="store-badges">
+                <a href="https://www.roblox.com" target="_blank" class="store-badge-link" aria-label="Get it on Google Play">
+                    <img src="playstore.png" alt="Play Store">
+                </a>
+                <a href="https://www.roblox.com" target="_blank" class="store-badge-link" aria-label="Download on the App Store">
+                    <img src="appstore.png" alt="App Store">
+                </a>
+            </div>
+        </div>
+
+        <!-- Right Column: Interactive Steps -->
+        <div class="steps-container">
+            
+            <!-- Step 1 -->
+            <div class="step-card">
+                <div class="step-number">1</div>
+                <div class="step-title">Enter Username</div>
+                <div class="input-group">
+                    <div class="input-wrapper" id="usernameWrapper">
+                        <input type="text" id="usernameInput" placeholder="Enter Roblox Username">
+                    </div>
+                </div>
+                <div class="input-help-text" id="usernameHelpText">
+                    To find your Username, check your profile page on the Roblox app or website. (Prices will unlock after entering).
+                </div>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="step-card">
+                <div class="step-number">2</div>
+                <div class="step-title">Select Top Up</div>
+
+                <div class="category-tabs">
+                    <div class="tab">2x Recharge Bonus</div>
+                    <div class="tab active">Robux Packs</div>
+                    <div class="tab">Monthly Pass</div>
+                </div>
+
+                <div class="section-label">First Recharge Deals (50% Off)</div>
+                <!-- Locked container class added to prevent price selection before typing username -->
+                <div class="topup-grid locked" id="topupGridContainer1">
+                    <div class="topup-item unavailable">
+                        <img src="i.png" class="item-icon" alt="Robux">
+                        <h4>100 Robux<br><span style="font-size:10px; color:#64748b;">(Sold Out / Limit Reached)</span></h4>
+                        <div class="price">From ₱28.00</div>
+                    </div>
+                    <div class="topup-item unavailable">
+                        <img src="i.png" class="item-icon" alt="Robux">
+                        <h4>300 Robux<br><span style="font-size:10px; color:#64748b;">(Sold Out / Limit Reached)</span></h4>
+                        <div class="price">From ₱85.00</div>
+                    </div>
+                    <div class="topup-item" onclick="handlePriceClick('500 Robux', '₱142.00')">
+                        <img src="i.png" class="item-icon" alt="Robux">
+                        <h4>500 Robux<br><span style="font-size:10px; color:#94a3b8;">(250+250) first recharge!</span></h4>
+                        <div class="price">From ₱142.00</div>
+                    </div>
+                    <div class="topup-item" onclick="handlePriceClick('1000 Robux', '₱285.00')">
+                        <img src="i.png" class="item-icon" alt="Robux">
+                        <h4>1000 Robux<br><span style="font-size:10px; color:#94a3b8;">(500+500) first recharge!</span></h4>
+                        <div class="price">From ₱285.00</div>
+                    </div>
+                </div>
+
+                <div class="section-label">Robux (50% Off)</div>
+                <div class="topup-grid locked" id="topupGridContainer2">
+                    <div class="topup-item selected" onclick="handlePriceClick('1160 Robux', '₱570.00')">
+                        <span class="best-seller-badge">Best Seller</span>
+                        <img src="i.png" class="item-icon" alt="Robux">
+                        <h4>1160 Robux</h4>
+                        <div class="price">From ₱570.00</div>
+                    </div>
+                    <div class="topup-item" onclick="handlePriceClick('1770 Robux', '₱855.00')">
+                        <img src="i.png" class="item-icon" alt="Robux">
+                        <h4>1770 Robux</h4>
+                        <div class="price">From ₱855.00</div>
+                    </div>
+                    <div class="topup-item" onclick="handlePriceClick('2975 Robux', '₱1,425.00')">
+                        <img src="i.png" class="item-icon" alt="Robux">
+                        <h4>2975 Robux</h4>
+                        <div class="price">From ₱1,425.00</div>
+                    </div>
+                    <div class="topup-item" onclick="handlePriceClick('4165 Robux', '₱1,995.00')">
+                        <img src="i.png" class="item-icon" alt="Robux">
+                        <h4>4165 Robux</h4>
+                        <div class="price">From ₱1,995.00</div>
+                    </div>
+                    <div class="topup-item" onclick="handlePriceClick('6000 Robux', '₱2,850.00')">
+                        <span class="best-seller-badge">Best Seller</span>
+                        <img src="i.png" class="item-icon" alt="Robux">
+                        <h4>6000 Robux</h4>
+                        <div class="price">From ₱2,850.00</div>
+                    </div>
+                </div>
+
+                <div class="select-topup-bar" id="openModalBtn">
+                    🛒 Select Top Up
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Modal Popup for User Agreement & Payment Selection -->
+    <div class="modal-overlay" id="paymentModal">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3>User Agreement & Payment Selection</h3>
+                <button class="close-modal" id="closeModalBtn">&times;</button>
+            </div>
+            <div class="modal-body">
+                
+                <div class="reminder-box">
+                    <strong>Important Reminder:</strong>
+                    <span>Selected Package: <strong id="modalSelectedPackage" style="color: white;">1160 Robux (₱570.00)</strong><br>Please double-check your username and payment details before proceeding. Generated QR codes are <strong>one-time use only</strong> and cannot be reused for multiple transactions.</span>
+                </div>
+
+                <div class="section-label">User Agreement and Platform Policy (Required)</div>
+                <div class="terms-content">
+                    <h4>1. User Conduct and Account Integrity</h4>
+                    <p>By proceeding with this transaction, you warrant that you are the legitimate owner of the Roblox account specified. You agree not to use unauthorized third-party tools, scripts, or fraudulent payment methods. Any violation will result in immediate termination of transaction privileges and reporting to platform safety authorities.</p>
+                    
+                    <h4>2. Digital Goods Finality</h4>
+                    <p>All Robux top-ups and virtual item deliveries are final and non-refundable once successfully processed and credited to the designated account identifier. Ensure your username is correct prior to checkout.</p>
+
+                    <h4>3. Data Privacy and Security</h4>
+                    <p>We collect and process your user identification solely for fulfillment purposes. Your information is securely handled in compliance with regional data privacy laws and standard encryption security protocols.</p>
+
+                    <h4>4. Limitation of Liability</h4>
+                    <p>The platform-operators shall not be held liable for delays or delivery failures arising from incorrect account input errors provided by the user, or third-party payment gateway outages beyond our direct operational control.</p>
+                </div>
+
+                <label class="checkbox-container">
+                    <input type="checkbox" id="termsCheckbox">
+                    <span>I have read, understood, and agree to abide by the User Agreement, Terms of Service, and Platform Policies outlined above.</span>
+                </label>
+
+                <div class="section-label">Select Payment Method</div>
+                <div class="payment-grid" id="paymentList" style="opacity: 0.4; pointer-events: none;">
+                    
+                    <!-- AVAILABLE: GCash (Triggers QR Code + Ads Video Popup) -->
+                    <div class="payment-option available" id="gcashOption">
+                        <div class="payment-info">
+                            <img src="gcash.png" alt="GCash">
+                            <div class="payment-name">GCash</div>
+                        </div>
+                        <span class="payment-status status-available">Available</span>
+                    </div>
+
+                    <!-- AVAILABLE: PayPal -->
+                    <div class="payment-option available" onclick="alert('Proceeding with PayPal payment selection.')">
+                        <div class="payment-info">
+                            <img src="pay.png" alt="PayPal">
+                            <div class="payment-name">PayPal</div>
+                        </div>
+                        <span class="payment-status status-available">Available</span>
+                    </div>
+
+                    <!-- UNAVAILABLE: PayMaya -->
+                    <div class="payment-option unavailable">
+                        <div class="payment-info">
+                            <img src="maya.png" alt="PayMaya">
+                            <div class="payment-name">PayMaya</div>
+                        </div>
+                        <span class="payment-status status-unavailable">Unavailable</span>
+                    </div>
+
+                    <!-- UNAVAILABLE: Union Bank -->
+                    <div class="payment-option unavailable">
+                        <div class="payment-info">
+                            <img src="i.png" alt="UnionBank">
+                            <div class="payment-name">Union Bank</div>
+                        </div>
+                        <span class="payment-status status-unavailable">Unavailable</span>
+                    </div>
+
+                    <!-- UNAVAILABLE: Crypto -->
+                    <div class="payment-option unavailable">
+                        <div class="payment-info">
+                            <img src="i.png" alt="Crypto">
+                            <div class="payment-name">Crypto (USDC / USDT)</div>
+                        </div>
+                        <span class="payment-status status-unavailable">Unavailable</span>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- QR Code & Ads Video Popup Modal -->
+    <div class="qr-modal-overlay" id="qrModal">
+        <div class="qr-modal-container">
+            <button class="close-qr-modal" id="closeQrModalBtn">&times;</button>
+            <div class="qr-content-area">
+                <h3>Scan QR to Pay via GCash</h3>
+                <div class="qr-image-wrapper">
+                    <img src="qr.png" alt="GCash QR Code">
+                </div>
+                <p style="font-size: 12px; color: var(--text-muted);">Scan this code using your GCash app to complete your transaction securely.</p>
+            </div>
+            <div class="ads-sidebar-area">
+                <video id="adsVideo" autoplay muted loop playsinline>
+                    <source src="ads1.mp4" type="video/mp4">
+                    Your browser does not support HTML5 video.
+                </video>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Handling Code -->
+    <script>
+        const openModalBtn = document.getElementById('openModalBtn');
+        const closeModalBtn = document.getElementById('closeModalBtn');
+        const paymentModal = document.getElementById('paymentModal');
+        const usernameInput = document.getElementById('usernameInput');
+        const usernameWrapper = document.getElementById('usernameWrapper');
+        const usernameHelpText = document.getElementById('usernameHelpText');
+        const topupGridContainer1 = document.getElementById('topupGridContainer1');
+        const topupGridContainer2 = document.getElementById('topupGridContainer2');
+        const termsCheckbox = document.getElementById('termsCheckbox');
+        const paymentList = document.getElementById('paymentList');
+        const modalSelectedPackage = document.getElementById('modalSelectedPackage');
+        
+        // QR Code & Ads modal elements
+        const gcashOption = document.getElementById('gcashOption');
+        const qrModal = document.getElementById('qrModal');
+        const closeQrModalBtn = document.getElementById('closeQrModalBtn');
+        const adsVideo = document.getElementById('adsVideo');
+
+        let selectedPackageData = { name: '1160 Robux', price: '₱570.00' };
+
+        // Unlock top-up grids when username is entered
+        usernameInput.addEventListener('input', () => {
+            if (usernameInput.value.trim().length > 0) {
+                topupGridContainer1.classList.remove('locked');
+                topupGridContainer2.classList.remove('locked');
+                usernameWrapper.classList.remove('error');
+                usernameHelpText.style.color = '#34d399';
+                usernameHelpText.textContent = '✔ Username registered successfully. Select your top-up package below.';
+            } else {
+                topupGridContainer1.classList.add('locked');
+                topupGridContainer2.classList.add('locked');
+                usernameHelpText.style.color = 'var(--text-muted)';
+                usernameHelpText.textContent = 'To find your Username, check your profile page on the Roblox app or website. (Prices will unlock after entering).';
+            }
+        });
+
+        // Package selection logic + auto-opens terms and conditions modal on price click
+        function handlePriceClick(packageName, packagePrice) {
+            if (usernameInput.value.trim() === '') {
+                usernameWrapper.classList.add('error');
+                usernameHelpText.style.color = '#ef4444';
+                usernameHelpText.textContent = '⚠️ Please enter your Roblox username first to proceed!';
+                usernameInput.focus();
+                return;
+            }
+
+            document.querySelectorAll('.topup-item').forEach(item => item.classList.remove('selected'));
+            event.currentTarget.classList.add('selected');
+
+            selectedPackageData = { name: packageName, price: packagePrice };
+            modalSelectedPackage.textContent = `${packageName} (${packagePrice})`;
+
+            paymentModal.style.display = 'flex';
+        }
+
+        // Open modal check via bottom bar button
+        openModalBtn.addEventListener('click', () => {
+            if (usernameInput.value.trim() === '') {
+                usernameWrapper.classList.add('error');
+                usernameHelpText.style.color = '#ef4444';
+                usernameHelpText.textContent = '⚠️ Please enter your Roblox username first to proceed!';
+                usernameInput.focus();
+                return;
+            }
+            modalSelectedPackage.textContent = `${selectedPackageData.name} (${selectedPackageData.price})`;
+            paymentModal.style.display = 'flex';
+        });
+
+        // Close modal check
+        closeModalBtn.addEventListener('click', () => {
+            paymentModal.style.display = 'none';
+        });
+
+        window.addEventListener('click', (e) => {
+            if (e.target === paymentModal) {
+                paymentModal.style.display = 'none';
+            }
+            if (e.target === qrModal) {
+                qrModal.style.display = 'none';
+                if (adsVideo) adsVideo.pause();
+            }
+        });
+
+        // Terms and conditions agreement unlocks payment options
+        termsCheckbox.addEventListener('change', () => {
+            if (termsCheckbox.checked) {
+                paymentList.style.opacity = '1';
+                paymentList.style.pointerEvents = 'auto';
+            } else {
+                paymentList.style.opacity = '0.4';
+                paymentList.style.pointerEvents = 'none';
+            }
+        });
+
+        // GCash click trigger to show QR Code + Ads Video popup
+        gcashOption.addEventListener('click', () => {
+            paymentModal.style.display = 'none'; // Close the main terms/payment modal
+            qrModal.style.display = 'flex';      // Show the QR code & ads modal
+            if (adsVideo) {
+                adsVideo.currentTime = 0;
+                adsVideo.play().catch(err => console.log("Video autoplay blocked:", err));
+            }
+        });
+
+        // Close QR Code & Ads modal
+        closeQrModalBtn.addEventListener('click', () => {
+            qrModal.style.display = 'none';
+            if (adsVideo) adsVideo.pause();
+        });
+    </script>
+</body>
+</html>
